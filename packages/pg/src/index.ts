@@ -550,9 +550,7 @@ export default function createConnection(
         (str.length === MAX_SAFE_INTEGER.length && str > MAX_SAFE_INTEGER)
       ) {
         throw new Error(
-          `JavaScript cannot handle integers great than: ${
-            Number.MAX_SAFE_INTEGER
-          }`,
+          `JavaScript cannot handle integers great than: ${Number.MAX_SAFE_INTEGER}`,
         );
       }
       return parseInteger(str);
@@ -567,9 +565,7 @@ export default function createConnection(
         result.some((val: number) => val && val > Number.MAX_SAFE_INTEGER)
       ) {
         throw new Error(
-          `JavaScript cannot handle integers great than: ${
-            Number.MAX_SAFE_INTEGER
-          }`,
+          `JavaScript cannot handle integers great than: ${Number.MAX_SAFE_INTEGER}`,
         );
       }
     });

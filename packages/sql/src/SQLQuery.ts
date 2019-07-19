@@ -249,19 +249,14 @@ function compilePG(items: Array<SQLItem>, options: {minify: boolean}): PGQuery {
       // identifier for non-string identifiers.
       case SQLItemType.IDENTIFIER: {
         query.text += item.names
-          .map(
-            (name): string => {
-              if (typeof name === 'string') return escapePGIdentifier(name);
+          .map((name): string => {
+            if (typeof name === 'string') return escapePGIdentifier(name);
 
-              if (!localIdentifiers.has(name))
-                localIdentifiers.set(
-                  name,
-                  `__local_${localIdentifiers.size}__`,
-                );
+            if (!localIdentifiers.has(name))
+              localIdentifiers.set(name, `__local_${localIdentifiers.size}__`);
 
-              return localIdentifiers.get(name)!;
-            },
-          )
+            return localIdentifiers.get(name)!;
+          })
           .join('.');
         break;
       }
@@ -305,19 +300,14 @@ function compileMySQL(items: Array<SQLItem>): MySqlQuery {
       // identifier for non-string identifiers.
       case SQLItemType.IDENTIFIER: {
         query.text += item.names
-          .map(
-            (name): string => {
-              if (typeof name === 'string') return escapeMySqlIdentifier(name);
+          .map((name): string => {
+            if (typeof name === 'string') return escapeMySqlIdentifier(name);
 
-              if (!localIdentifiers.has(name))
-                localIdentifiers.set(
-                  name,
-                  `__local_${localIdentifiers.size}__`,
-                );
+            if (!localIdentifiers.has(name))
+              localIdentifiers.set(name, `__local_${localIdentifiers.size}__`);
 
-              return localIdentifiers.get(name)!;
-            },
-          )
+            return localIdentifiers.get(name)!;
+          })
           .join('.');
         break;
       }
